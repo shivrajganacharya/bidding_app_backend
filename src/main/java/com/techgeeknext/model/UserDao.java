@@ -9,10 +9,8 @@ import java.util.List;
 @Table(name = "user")
 public class UserDao {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column
     private String username;
+
     @Column
     @JsonIgnore
     private String password;
@@ -27,11 +25,11 @@ public class UserDao {
     private String lastName;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id_fk", referencedColumnName = "id")
+    @JoinColumn(name = "username_fk", referencedColumnName = "username")
     List<ItemsDao> items = new ArrayList<ItemsDao>();
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id_fk", referencedColumnName = "id")
+    @JoinColumn(name = "username_fk", referencedColumnName = "username")
     List<BidsDao> bids  = new ArrayList<BidsDao>();
 
     public List<ItemsDao> getItems() {
