@@ -28,10 +28,6 @@ public class UserDao {
     @JoinColumn(name = "username_fk", referencedColumnName = "username")
     List<ItemsDao> items = new ArrayList<ItemsDao>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "username_fk", referencedColumnName = "username")
-    List<BidsDao> bids  = new ArrayList<BidsDao>();
-
     public List<ItemsDao> getItems() {
         return items;
     }
@@ -39,16 +35,6 @@ public class UserDao {
     public void setItems(List<ItemsDao> items) {
         this.items = items;
     }
-
-    public List<BidsDao> getBids() {
-        return bids;
-    }
-
-    public void setBids(List<BidsDao> bids) {
-        this.bids = bids;
-    }
-
-
 
     public String getEmail() {
         return email;

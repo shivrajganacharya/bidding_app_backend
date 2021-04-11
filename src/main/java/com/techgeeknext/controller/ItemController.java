@@ -9,26 +9,27 @@ import com.techgeeknext.repository.UserRepository;
 import com.techgeeknext.service.UserInfo;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.List;
 
 @RestController
-@CrossOrigin()
+@CrossOrigin(origins = "*")
 public class ItemController {
     @Autowired
     UserRepository userRepository;
 
     @Autowired
+    ItemsRepository itemsRepository;
+
+    @Autowired
     UserInfo userInfo;
 
     @PostMapping("/addItem")
-    public void addItem(HttpServletRequest request , @RequestBody ItemsDto items) {
+    public ResponseEntity<?> addItem(HttpServletRequest request, @RequestBody ItemsDto items) {
         UserDao userDao = userRepository.findByUsername(userInfo.getUserName(request));
 
         System.out.println(userDao.getEmail());
@@ -40,6 +41,21 @@ public class ItemController {
 
         userDao.getItems().add(itemsDao);
 
-        userRepository.save(userDao);
+        return ResponseEntity.ok(userRepository.save(userDao));
     }
+
+    @GetMapping("/getAllItems")
+    public List<ItemsDao> getAllItems() {
+        System.out.println("In getAllItems");
+        return itemsRepository.findAll();
+    }
+
+    @GetMapping("/getUserItems")
+    public List<ItemsDao> getUserItems(HttpServletRequest request) {
+        UserDao userDao = userRepository.findByUsername(userInfo.getUserName(request));
+        List<ItemsDao> items = userDao.getItems();
+        return items;
+    }
+
+
 }

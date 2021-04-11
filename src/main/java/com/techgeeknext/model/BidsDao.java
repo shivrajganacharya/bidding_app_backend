@@ -8,7 +8,16 @@ public class BidsDao {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private String username;
     private double bid_value;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public double getBid_value() {
         return bid_value;
