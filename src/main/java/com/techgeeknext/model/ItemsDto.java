@@ -1,10 +1,35 @@
 package com.techgeeknext.model;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.util.Date;
+
 public class ItemsDto {
 
     private String item_name;
     private String description;
     private Integer base_price;
+    private Date transport_date;
+    private Integer on_sale;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date datetime;
+
+    public Integer getOn_sale() {
+        return on_sale;
+    }
+
+    public void setOn_sale(Integer on_sale) {
+        this.on_sale = on_sale;
+    }
+
+    public Date getTransport_date() {
+        return transport_date;
+    }
+
+    public void setTransport_date(Date transport_date) {
+        this.transport_date = transport_date;
+    }
 
     public String getItem_name() {
         return item_name;

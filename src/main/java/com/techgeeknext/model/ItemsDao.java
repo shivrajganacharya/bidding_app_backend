@@ -1,7 +1,10 @@
 package com.techgeeknext.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,10 +16,31 @@ public class ItemsDao {
     private String item_name;
     private String description;
     private Integer base_price;
+    private Integer on_sale;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date datetime;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id_fk", referencedColumnName = "item_id")
     List<BidsDao> bids  = new ArrayList<BidsDao>();
+
+
+    public Integer getOn_sale() {
+        return on_sale;
+    }
+
+    public void setOn_sale(Integer on_sale) {
+        this.on_sale = on_sale;
+    }
+
+    public Date getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
+    }
 
     public List<BidsDao> getBids() {
         return bids;
@@ -56,6 +80,14 @@ public class ItemsDao {
 
     public void setBase_price(Integer base_price) {
         this.base_price = base_price;
+    }
+
+    public Date getTransport_date() {
+        return datetime;
+    }
+
+    public void setTransport_date(Date transport_date) {
+        this.datetime = transport_date;
     }
 }
 
