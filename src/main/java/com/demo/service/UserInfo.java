@@ -1,6 +1,6 @@
-package com.techgeeknext.service;
+package com.demo.service;
 
-import com.techgeeknext.config.JwtTokenUtil;
+import com.demo.config.JwtTokenUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

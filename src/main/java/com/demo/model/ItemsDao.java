@@ -1,6 +1,4 @@
-package com.techgeeknext.model;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+package com.demo.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,6 +15,7 @@ public class ItemsDao {
     private String description;
     private Integer base_price;
     private Integer on_sale;
+    private Integer max_bid_id;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date datetime;
@@ -25,6 +24,14 @@ public class ItemsDao {
     @JoinColumn(name = "item_id_fk", referencedColumnName = "item_id")
     List<BidsDao> bids  = new ArrayList<BidsDao>();
 
+
+    public Integer getMax_bid_id() {
+        return max_bid_id;
+    }
+
+    public void setMax_bid_id(Integer max_bid_id) {
+        this.max_bid_id = max_bid_id;
+    }
 
     public Integer getOn_sale() {
         return on_sale;

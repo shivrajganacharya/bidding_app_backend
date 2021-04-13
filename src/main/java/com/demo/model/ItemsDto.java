@@ -1,4 +1,4 @@
-package com.techgeeknext.model;
+package com.demo.model;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -11,9 +11,18 @@ public class ItemsDto {
     private Integer base_price;
     private Date transport_date;
     private Integer on_sale;
+    private Integer max_bid_id;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date datetime;
+
+    public Integer getMax_bid_id() {
+        return max_bid_id;
+    }
+
+    public void setMax_bid_id(Integer max_bid_id) {
+        this.max_bid_id = max_bid_id;
+    }
 
     public Integer getOn_sale() {
         return on_sale;

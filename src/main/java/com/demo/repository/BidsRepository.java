@@ -1,9 +1,7 @@
-package com.techgeeknext.repository;
+package com.demo.repository;
 
-import com.techgeeknext.model.BidsDao;
+import com.demo.model.BidsDao;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Optional;
 
 public interface BidsRepository extends JpaRepository<BidsDao, Integer> {
 

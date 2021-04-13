@@ -1,15 +1,13 @@
-package com.techgeeknext.controller;
+package com.demo.controller;
 
-import com.techgeeknext.model.BidsDao;
-import com.techgeeknext.model.BidsDto;
-import com.techgeeknext.model.ItemsDao;
-import com.techgeeknext.model.UserDao;
-import com.techgeeknext.repository.BidsRepository;
-import com.techgeeknext.repository.ItemsRepository;
-import com.techgeeknext.repository.UserRepository;
-import com.techgeeknext.service.UserInfo;
+import com.demo.model.BidsDao;
+import com.demo.model.BidsDto;
+import com.demo.model.ItemsDao;
+import com.demo.repository.BidsRepository;
+import com.demo.repository.ItemsRepository;
+import com.demo.repository.UserRepository;
+import com.demo.service.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +33,7 @@ public class BidsController {
     @PostMapping("/makeBid/{item_id}")
     public void makeBit(HttpServletRequest request, @RequestBody BidsDto bidsDto, @PathVariable Integer item_id) {
         Optional<ItemsDao> itemsDao = itemsRepository.findById(item_id);
+        System.out.println(item_id);
         BidsDao bidsDao = new BidsDao();
         System.out.println(bidsDto.getBid_value());
         bidsDao.setBid_value(bidsDto.getBid_value());

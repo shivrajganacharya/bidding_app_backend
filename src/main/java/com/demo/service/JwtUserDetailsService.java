@@ -1,8 +1,8 @@
-package com.techgeeknext.service;
+package com.demo.service;
 
-import com.techgeeknext.model.UserDao;
-import com.techgeeknext.model.UserDto;
-import com.techgeeknext.repository.UserRepository;
+import com.demo.model.UserDao;
+import com.demo.model.UserDto;
+import com.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

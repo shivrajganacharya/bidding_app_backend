@@ -1,15 +1,13 @@
-package com.techgeeknext.controller;
+package com.demo.controller;
 
-import com.techgeeknext.config.JwtTokenUtil;
-import com.techgeeknext.model.ItemsDao;
-import com.techgeeknext.model.ItemsDto;
-import com.techgeeknext.model.UserDao;
-import com.techgeeknext.repository.ItemsRepository;
-import com.techgeeknext.repository.UserRepository;
-import com.techgeeknext.service.UserInfo;
-import io.jsonwebtoken.ExpiredJwtException;
+import com.demo.model.BidsDao;
+import com.demo.model.ItemsDao;
+import com.demo.model.ItemsDto;
+import com.demo.model.UserDao;
+import com.demo.repository.ItemsRepository;
+import com.demo.repository.UserRepository;
+import com.demo.service.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -74,6 +69,16 @@ public class ItemController {
 
         for(ItemsDao i : itemsDao) {
             i.setOn_sale(0);
+            List<BidsDao> bidsDao = i.getBids();
+            Integer max_bid_id = -1;
+            double max_bid = 0;
+            for(BidsDao b : bidsDao) {
+                if(max_bid < b.getBid_value()) {
+                    max_bid = b.getBid_value();
+                    max_bid_id = b.getId();
+                }
+            }
+            i.setMax_bid_id(max_bid_id);
             itemsRepository.save(i);
         }
     }

@@ -1,13 +1,6 @@
-package com.techgeeknext.model;
+package com.demo.model;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "Bids")
-public class BidsDao {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+public class BidsDto {
     private String username;
     private double bid_value;
 

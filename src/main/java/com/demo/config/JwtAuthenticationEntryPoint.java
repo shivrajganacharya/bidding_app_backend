@@ -1,4 +1,4 @@
-package com.techgeeknext.config;
+package com.demo.config;
 
 import java.io.IOException;
 import java.io.Serializable;

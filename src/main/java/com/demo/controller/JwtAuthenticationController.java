@@ -1,10 +1,10 @@
-package com.techgeeknext.controller;
+package com.demo.controller;
 
-import com.techgeeknext.config.JwtTokenUtil;
-import com.techgeeknext.model.JwtRequest;
-import com.techgeeknext.model.JwtResponse;
-import com.techgeeknext.model.UserDto;
-import com.techgeeknext.service.JwtUserDetailsService;
+import com.demo.config.JwtTokenUtil;
+import com.demo.model.JwtRequest;
+import com.demo.model.JwtResponse;
+import com.demo.model.UserDto;
+import com.demo.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

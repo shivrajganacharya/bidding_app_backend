@@ -1,4 +1,4 @@
-package com.techgeeknext.model;
+package com.demo.model;
 
 import java.io.Serializable;
 

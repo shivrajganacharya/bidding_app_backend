@@ -1,40 +1,11 @@
-package com.techgeeknext.model;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package com.demo.model;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-
-@Entity
-@Table(name = "user")
-public class UserDao {
-    @Id
+public class UserDto {
     private String username;
-
-    @Column
-    @JsonIgnore
     private String password;
-
-    @Column
     private String firstName;
-
-    @Column
     private String email;
-
-    @Column
     private String lastName;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "username_fk", referencedColumnName = "username")
-    List<ItemsDao> items = new ArrayList<ItemsDao>();
-
-    public List<ItemsDao> getItems() {
-        return items;
-    }
-
-    public void setItems(List<ItemsDao> items) {
-        this.items = items;
-    }
 
     public String getEmail() {
         return email;
@@ -75,6 +46,4 @@ public class UserDao {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }
-
