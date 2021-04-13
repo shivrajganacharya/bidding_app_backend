@@ -6,7 +6,7 @@ import com.demo.model.ItemsDao;
 import com.demo.repository.BidsRepository;
 import com.demo.repository.ItemsRepository;
 import com.demo.repository.UserRepository;
-import com.demo.service.UserInfo;
+import com.demo.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +28,7 @@ public class BidsController {
     ItemsRepository itemsRepository;
 
     @Autowired
-    UserInfo userInfo;
+    UserInfoService userInfoService;
 
     @PostMapping("/makeBid/{item_id}")
     public void makeBit(HttpServletRequest request, @RequestBody BidsDto bidsDto, @PathVariable Integer item_id) {
@@ -37,7 +37,7 @@ public class BidsController {
         BidsDao bidsDao = new BidsDao();
         System.out.println(bidsDto.getBid_value());
         bidsDao.setBid_value(bidsDto.getBid_value());
-        bidsDao.setUsername(userInfo.getUserName(request));
+        bidsDao.setUsername(userInfoService.getUserName(request));
         itemsDao.get().getBids().add(bidsDao);
         itemsRepository.save(itemsDao.get());
     }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 
 @Service
-public class UserInfo {
+public class UserInfoService {
 
     @Autowired
     JwtTokenUtil jwtTokenUtil;
