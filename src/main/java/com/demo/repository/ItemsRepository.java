@@ -13,4 +13,7 @@ public interface ItemsRepository extends JpaRepository<ItemsDao, Integer> {
 
     @Query("select d from ItemsDao d where d.datetime <= :datetime")
     List findAllWithDatetimeBefore(@Param("datetime") Date datetime);
+
+    @Query("select d from ItemsDao d where d.on_sale = 1")
+    List findAllByOn_saleEquals();
 }

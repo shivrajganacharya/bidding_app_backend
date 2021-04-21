@@ -47,7 +47,7 @@ public class ItemController {
         itemsDao.setBase_price(items.getBase_price());
         itemsDao.setItem_name(items.getItem_name());
         itemsDao.setDescription(items.getDescription());
-        itemsDao.setTransport_date(items.getTransport_date());
+        itemsDao.setDatetime(items.getDatetime());
         itemsDao.setOn_sale(1);
 
         userDao.getItems().add(itemsDao);
@@ -58,7 +58,7 @@ public class ItemController {
     @GetMapping("/getAllItems")
     public List<ItemsDao> getAllItems() {
         System.out.println("In getAllItems");
-        return itemsRepository.findAll();
+        return itemsRepository.findAllByOn_saleEquals();
     }
 
     @GetMapping("/getUserItems")

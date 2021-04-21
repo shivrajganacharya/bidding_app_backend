@@ -9,7 +9,6 @@ public class ItemsDto {
     private String item_name;
     private String description;
     private Integer base_price;
-    private Date transport_date;
     private Integer on_sale;
     private Integer max_bid_id;
 
@@ -32,12 +31,12 @@ public class ItemsDto {
         this.on_sale = on_sale;
     }
 
-    public Date getTransport_date() {
-        return transport_date;
+    public Date getDatetime() {
+        return datetime;
     }
 
-    public void setTransport_date(Date transport_date) {
-        this.transport_date = transport_date;
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
     }
 
     public String getItem_name() {
