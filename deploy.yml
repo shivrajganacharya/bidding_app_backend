@@ -1,16 +1,16 @@
 ---
-- name: Pull and Run docker image of shivraj25/bidding_app_springboot
+- name: Pull and Run docker image of shivraj25/bidding_app_backend
   hosts: all
   tasks:
-    - name: Pull shivraj25/bidding_app_springboot
+    - name: Pull shivraj25/bidding_app_backend
       docker_image:
-        name: shivraj25/bidding_app_springboot
+        name: shivraj25/bidding_app_backend
         source: pull
 
     - name: Create default containers
       docker_container:
         name: c1
-        image: shivraj25/bidding_app_springboot
+        image: shivraj25/bidding_app_backend
         state: present
 
 - name: Running MYSQL Database as Docker Container using Ansible.
