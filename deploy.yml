@@ -34,3 +34,5 @@
           MYSQL_PASSWORD: Shivraj@25
         ports:
           - "3307:3306"
+        cap_add:
+          - "yes"
