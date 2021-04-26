@@ -33,5 +33,5 @@
           MYSQL_USER: Shivraj
           MYSQL_PASSWORD: Shivraj@25
         ports:
-          - "3307:3306"
+          - "3306:3306"
 
