@@ -26,13 +26,13 @@
         image: mysql:5.7
         volumes:
           - "{{ db_volume }}:/var/lib/mysql"
-        restart: true
-        env:
-          MYSQL_ROOT_PASSWORD: Shivraj@25
-          MYSQL_DATABASE: bidding_app_db
-          MYSQL_USER: Shivraj
-          MYSQL_PASSWORD: Shivraj@25
-        ports:
-          - "3307:3306"
-        cap_add:
-          - "yes"
+#        restart: true
+#        env:
+#          MYSQL_ROOT_PASSWORD: Shivraj@25
+#          MYSQL_DATABASE: bidding_app_db
+#          MYSQL_USER: Shivraj
+#          MYSQL_PASSWORD: Shivraj@25
+#        ports:
+#          - "3307:3306"
+#        cap_add:
+#          - "yes"
