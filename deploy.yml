@@ -32,5 +32,6 @@
           MYSQL_DATABASE: bidding_app_db
           MYSQL_USER: Shivraj
           MYSQL_PASSWORD: Shivraj@25
-
+        ports:
+          - "3306:3306"
 
