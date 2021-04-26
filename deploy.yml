@@ -7,11 +7,11 @@
         name: shivraj25/bidding_app_backend
         source: pull
 
-    - name: Create default containers
-      docker_container:
-        name: c1
-        image: shivraj25/bidding_app_backend
-        state: present
+#    - name: Create default containers
+#      docker_container:
+#        name: c1
+#        image: shivraj25/bidding_app_backend
+#        state: present
 
 - name: Running MYSQL Database as Docker Container using Ansible.
   hosts: all
