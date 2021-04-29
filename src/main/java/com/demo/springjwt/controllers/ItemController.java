@@ -88,7 +88,12 @@ public class ItemController {
                     itemBid.setItem_name(item.getItem_name());
                     itemBid.setDescription(item.getDescription());
                     itemBid.setBid_value(bid.getBid_value());
+                    itemBid.setImage(item.getImage());
+                    itemBid.setOn_sale(item.getOn_sale());
+                    itemBid.setSource_address(item.getSource_address());
+                    itemBid.setDestination_address(item.getDestination_address());
                     itemBidsList.add(itemBid);
+
                 }
             }
         }

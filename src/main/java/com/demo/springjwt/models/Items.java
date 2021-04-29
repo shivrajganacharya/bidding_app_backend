@@ -18,6 +18,7 @@ public class Items {
     private Integer max_bid_id;
     private String source_address;
     private String destination_address;
+    private String image;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date datetime;
@@ -113,6 +114,14 @@ public class Items {
 
     public void setDestination_address(String destination_address) {
         this.destination_address = destination_address;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
 
