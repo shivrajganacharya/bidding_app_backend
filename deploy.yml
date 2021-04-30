@@ -9,7 +9,7 @@
 
     - name: Create default containers
       docker_container:
-        name: c1
+        name: bidding_app_backend
         image: shivraj25/bidding_app_backend
         state: present
         ports:
@@ -47,5 +47,5 @@
     name: network_one
     connected:
       - mysql-standalone-01
-      - c1
+      - bidding_app_backend
 
