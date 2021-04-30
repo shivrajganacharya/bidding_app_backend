@@ -17,7 +17,7 @@
 
     - name: Pull MySQl image
       docker_image:
-        - name: mysql:5.7
+        name: mysql:5.7
 
 #    - name: Running MYSQL Database as Docker Container using Ansible.
 #      hosts: all
