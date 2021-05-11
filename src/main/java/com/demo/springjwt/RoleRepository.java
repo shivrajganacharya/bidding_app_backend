@@ -1,4 +1,4 @@
-package com.demo.springjwt.repository;
+package com.demo.springjwt;
 
 import java.util.Optional;
 

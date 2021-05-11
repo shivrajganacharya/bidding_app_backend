@@ -5,6 +5,10 @@ public class ItemBid {
     private String item_name;
     private String description;
     private double bid_value;
+    private Integer on_sale;
+    private String source_address;
+    private String destination_address;
+    private String image;
 
     public Integer getItem_id() {
         return item_id;
@@ -36,5 +40,37 @@ public class ItemBid {
 
     public void setBid_value(double bid_value) {
         this.bid_value = bid_value;
+    }
+
+    public Integer getOn_sale() {
+        return on_sale;
+    }
+
+    public void setOn_sale(Integer on_sale) {
+        this.on_sale = on_sale;
+    }
+
+    public String getSource_address() {
+        return source_address;
+    }
+
+    public void setSource_address(String source_address) {
+        this.source_address = source_address;
+    }
+
+    public String getDestination_address() {
+        return destination_address;
+    }
+
+    public void setDestination_address(String destination_address) {
+        this.destination_address = destination_address;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

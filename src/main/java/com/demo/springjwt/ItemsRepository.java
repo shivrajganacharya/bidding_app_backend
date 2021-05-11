@@ -1,4 +1,4 @@
-package com.demo.springjwt.repository;
+package com.demo.springjwt;
 
 import com.demo.springjwt.models.Items;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -4,11 +4,13 @@ import com.demo.springjwt.models.Bids;
 import com.demo.springjwt.models.Items;
 import com.demo.springjwt.models.User;
 import com.demo.springjwt.payload.ItemBid;
-import com.demo.springjwt.repository.BidsRepository;
-import com.demo.springjwt.repository.ItemsRepository;
-import com.demo.springjwt.repository.UserRepository;
+import com.demo.springjwt.BidsRepository;
+import com.demo.springjwt.ItemsRepository;
+import com.demo.springjwt.UserRepository;
 import com.demo.springjwt.security.jwt.JwtUtils;
 import com.demo.springjwt.utils.JavaMailUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,6 +31,9 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
 public class ItemController {
+
+    private static final Logger logger = LogManager.getLogger(ItemController.class);
+
     @Autowired
     UserRepository userRepository;
 
@@ -41,12 +46,13 @@ public class ItemController {
     @Autowired
     JwtUtils jwtUtils;
 
+
     @PostMapping("/addItem")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> addItem(HttpServletRequest request, @RequestBody Items items) throws ParseException {
-        Optional<User> user = userRepository.findByUsername(jwtUtils.getUserNameFromJwtToken(request.getHeader("Authorization").substring(7)));
+        logger.info("Item added by user. Item name is " + items.getItem_name());
 
-        System.out.println(user.get().getEmail());
+        Optional<User> user = userRepository.findByUsername(jwtUtils.getUserNameFromJwtToken(request.getHeader("Authorization").substring(7)));
 
         items.setOn_sale(1);
 
@@ -58,13 +64,13 @@ public class ItemController {
     @GetMapping("/getAllItems")
     @PreAuthorize("hasRole('MODERATOR')")
     public List<Items> getAllItems() {
-        System.out.println("In getAllItems");
+        logger.info("Get all items method accessed");
         return itemsRepository.findAllByOn_saleEquals();
     }
 
     @GetMapping("/getUserItems")
     public List<Items> getUserItems(HttpServletRequest request) {
-        System.out.println("In getUserItems");
+        logger.info("get user items method accessed");
         Optional<User> user = userRepository.findByUsername(jwtUtils.getUserNameFromJwtToken(request.getHeader("Authorization").substring(7)));
         List<Items> items = user.get().getItems();
         return items;
@@ -72,7 +78,7 @@ public class ItemController {
 
     @GetMapping("/getUserBids")
     public List<ItemBid> getUserBids(HttpServletRequest request) {
-        System.out.println("In getUserBids");
+        logger.info("get user bids method accessed");
 
         String username = jwtUtils.getUserNameFromJwtToken(request.getHeader("Authorization").substring(7));
         List<ItemBid> itemBidsList = new ArrayList<>();
@@ -88,7 +94,12 @@ public class ItemController {
                     itemBid.setItem_name(item.getItem_name());
                     itemBid.setDescription(item.getDescription());
                     itemBid.setBid_value(bid.getBid_value());
+                    itemBid.setImage(item.getImage());
+                    itemBid.setOn_sale(item.getOn_sale());
+                    itemBid.setSource_address(item.getSource_address());
+                    itemBid.setDestination_address(item.getDestination_address());
                     itemBidsList.add(itemBid);
+
                 }
             }
         }
@@ -98,6 +109,7 @@ public class ItemController {
 
     @GetMapping("/calculateBidResult")
     public void getTimeOverItems(HttpServletRequest request) throws ParseException, MessagingException, javax.mail.MessagingException {
+        logger.info("highest bidder calculated for time over items");
 
         List<User> userList = userRepository.findAll();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -150,39 +162,6 @@ public class ItemController {
             }
             userRepository.save(user);
         }
-
-        /*Optional<User> userDao = userRepository.findByUsername(jwtUtils.getUserNameFromJwtToken(request.getHeader("Authorization").substring(7)));
-
-        System.out.println("in getTimeOverItems");
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime now = LocalDateTime.now();
-        List<Items> itemsDao = itemsRepository.findAllWithDatetimeBefore(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(dtf.format(now)));
-
-        for(Items i : itemsDao) {
-            if(i.getOn_sale() == 1) {
-                i.setOn_sale(0);
-                List<Bids> bidsDao = i.getBids();
-                Integer max_bid_id = -1;
-                double max_bid = 0;
-                for(Bids b : bidsDao) {
-                    if(max_bid < b.getBid_value()) {
-                        max_bid = b.getBid_value();
-                        max_bid_id = b.getId();
-                    }
-                }
-                if(max_bid_id != -1) {
-                    Optional<Bids> bid = bidsRepository.findById(max_bid_id);
-                    String message = "";
-                    Optional<User> max_bidder = userRepository.findByUsername(bid.get().getUsername());
-                    message += "Highest bidder is " + max_bidder.get().getUsername() + ".\n";
-                    message += "Bid value is " + max_bid + ".\n";
-                    message += "Email of Bidder - " + max_bidder.get().getEmail();
-                    JavaMailUtil.sendMail(userDao.get().getEmail(), message);
-                }
-                i.setMax_bid_id(max_bid_id);
-                itemsRepository.save(i);
-            }
-        }*/
     }
 
 

@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.springjwt.repository.RoleRepository;
-import com.demo.springjwt.repository.UserRepository;
+import com.demo.springjwt.RoleRepository;
+import com.demo.springjwt.UserRepository;
 import com.demo.springjwt.security.jwt.JwtUtils;
 import com.demo.springjwt.security.services.UserDetailsImpl;
 
