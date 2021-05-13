@@ -1,4 +1,5 @@
-name: Pull and Run docker image of shabbir148/bidding_app_backend
+---
+- name: Pull and Run docker image of shabbir148/bidding_app_backend
   hosts: all
   tasks:
     - name: Pull shabbir148/bidding_app_backend
@@ -6,22 +7,21 @@ name: Pull and Run docker image of shabbir148/bidding_app_backend
         name: shabbir148/bidding_app_backend
         source: pull
 
-#    - name: Create default containers
-#      docker_container:
-#        name: bidding_app_backend
-#        image: shivraj25/bidding_app_backend
-#        state: present
-#        ports:
-#          - "8085:8080"
+    #    - name: Create default containers
+    #      docker_container:
+    #        name: bidding_app_backend
+    #        image: shivraj25/bidding_app_backend
+    #        state: present
+    #        ports:
+    #          - "8085:8080"
 
     - name: Pull MySQl image
       docker_image:
         name: mysql:5.7
-
 #    - name: Running MYSQL Database as Docker Container using Ansible.
 #      hosts: all
 #
-#      vars:
+#      vars:,''
 #        db_volumuser1e: db_data
 #
 #      tasks:
