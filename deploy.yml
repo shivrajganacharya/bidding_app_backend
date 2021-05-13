@@ -22,7 +22,7 @@ name: Pull and Run docker image of shabbir148/bidding_app_backend
 #      hosts: all
 #
 #      vars:
-#        db_volume: db_data
+#        db_volumuser1e: db_data
 #
 #      tasks:
 #        - name: Launch mysql database container
