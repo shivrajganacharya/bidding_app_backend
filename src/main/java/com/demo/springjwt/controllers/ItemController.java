@@ -146,6 +146,8 @@ public class ItemController {
                         Optional<User> max_bidder = userRepository.findByUsername(max_bidder_username);
                         String message1 = "Hello " + user.getUsername() + "!\n";
                         message1 += "Highest bidder is " + max_bidder.get().getUsername() + ".\n";
+                        message1 += "Item name - " + item.getItem_name() +"\n";
+                        message1 += "Item description - " + item.getDescription()+"\n";
                         message1 += "Bid value is " + max_bid + ".\n";
                         message1 += "Email of bidder is " + max_bidder.get().getEmail();
                         JavaMailUtil.sendMail(user.getEmail(), message1);
